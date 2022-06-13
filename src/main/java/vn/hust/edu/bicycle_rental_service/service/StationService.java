@@ -1,10 +1,11 @@
 package vn.hust.edu.bicycle_rental_service.service;
 
-import vn.hust.edu.bicycle_rental_service.dto.response.GetListStationResp;
+import vn.hust.edu.bicycle_rental_service.dto.request.PostListStationReq;
+import vn.hust.edu.bicycle_rental_service.dto.response.PostListStationResp;
 
 public interface StationService {
 
-    GetListStationResp getListStation();
+    PostListStationResp postListStation(PostListStationReq req);
 
 
 }

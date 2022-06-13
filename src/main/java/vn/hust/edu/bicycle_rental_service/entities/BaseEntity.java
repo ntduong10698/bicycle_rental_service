@@ -2,12 +2,14 @@ package vn.hust.edu.bicycle_rental_service.entities;
 
 import lombok.Data;
 
+import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import java.util.Date;
 import java.sql.Timestamp;
 
 @Data
+@MappedSuperclass
 public class BaseEntity {
 
     private Timestamp createdAt;
