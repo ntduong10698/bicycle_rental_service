@@ -9,4 +9,5 @@ public class AppConfig {
 
     public static Map<Integer, BicycleTypeEntity> mapTypeBicycle = new HashMap();
 
+
 }

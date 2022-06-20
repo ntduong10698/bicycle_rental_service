@@ -6,7 +6,20 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class BicycleRentalServiceApplication {
+public class
+
+
+
+
+
+
+
+
+
+
+
+
+BicycleRentalServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BicycleRentalServiceApplication.class, args);

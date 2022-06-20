@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import vn.hust.edu.bicycle_rental_service.config.AppConfig;
 import vn.hust.edu.bicycle_rental_service.entities.BicycleTypeEntity;
 import vn.hust.edu.bicycle_rental_service.repository.BicycleTypeRepo;
+import vn.hust.edu.bicycle_rental_service.type.StatusType;
 
 import java.util.List;
 import java.util.function.Function;
@@ -22,7 +23,7 @@ public class AppSchedule {
     @Scheduled(fixedRate = 8460000)
     public void loadBicycleType() {
         log.info("====Start AppSchedule loadBicycleType====");
-        List<BicycleTypeEntity> listBicycleType = bicycleTypeRepo.findAll();
+        List<BicycleTypeEntity> listBicycleType = bicycleTypeRepo.findByStatus(StatusType.ACTIVE.name());
         AppConfig.mapTypeBicycle = listBicycleType.parallelStream()
                 .collect(Collectors.toMap(BicycleTypeEntity::getId, Function.identity()));
     }

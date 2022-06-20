@@ -5,7 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import vn.hust.edu.bicycle_rental_service.StationType;
+import vn.hust.edu.bicycle_rental_service.type.StatusType;
 import vn.hust.edu.bicycle_rental_service.dto.request.PostListStationReq;
 import vn.hust.edu.bicycle_rental_service.dto.response.BicycleResp;
 import vn.hust.edu.bicycle_rental_service.dto.response.PostListStationResp;
@@ -36,11 +36,11 @@ public class StationServiceImpl implements StationService {
     public PostListStationResp postListStation(PostListStationReq req) {
         try {
             List<StationResp> listStation = new ArrayList<>();
-            List<StationEntity> stationList = stationRepo.findByNameAndAddressAndStatus(req.getName(), req.getAddress(), StationType.ACTIVE.name());
+            List<StationEntity> stationList = stationRepo.findByNameAndAddressAndStatus(req.getName(), req.getAddress(), StatusType.ACTIVE.name());
             if (!CollectionUtils.isEmpty(stationList)) {
                 Map<Integer, List<BicycleEntity>> bicycleMap = new HashMap<>();
                 bicycleRepo.findByStationIdIn(stationList
-                        .stream().map(StationEntity::getId).collect(Collectors.toList()))
+                        .stream().map(StationEntity::getId).collect(Collectors.toList()), StatusType.ACTIVE.name())
                         .parallelStream().forEach(b -> {
                     List<BicycleEntity> l = bicycleMap.get(b.getStationId());
                     if (CollectionUtils.isEmpty(l)) {

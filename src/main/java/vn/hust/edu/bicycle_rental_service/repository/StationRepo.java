@@ -15,4 +15,6 @@ public interface StationRepo extends JpaRepository<StationEntity, Integer> {
             "and (?2 is null or s.address like concat('%',?2,'%'))")
     List<StationEntity> findByNameAndAddressAndStatus(String name, String address, String status);
 
+    @Query("select s from  StationEntity s where s.status = ?1 and s.id in ?2")
+    List<StationEntity> findByStatusAndIdIn(String status, List<Integer> ids);
 }
